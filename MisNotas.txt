@@ -1,0 +1,5 @@
+PENDIENTE:
+1- Cuando las credenciales de inicio de sesion no son correctas, el error no se muestra correctamente
+
+MODIFICAR CUANDO SE SUBA AL SERVIDOR:
+Fichero App.php -> public $baseURL = 'http://localhost:4306/web'; por la ruta del servidor devsan.es
