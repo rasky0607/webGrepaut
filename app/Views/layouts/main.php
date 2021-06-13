@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/assets/styles.css">
   <script>
         function confirmDelete(){
-            var reply=confirm("This item is going to be deleted, do you agree to continue?");
+            var reply=confirm("Este elemento va ser elimnado, ¿Estas seguro de continuar con el proceso?");
             if(reply){
                 return true;
             }else{
@@ -57,22 +57,22 @@
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item">
-            <a href="home/" class="nav-link">Home</a>
+            <a href="/home/" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
-            <a href="/events" class="nav-link">Events</a>
+            <a href="/Cliente/" class="nav-link">Clientes</a>
         </li>
         <li class="nav-item">
-            <a href="/users" class="nav-link">Clientes</a>
+            <a href="/Coche/" class="nav-link">Coches</a>
         </li>
         <li class="nav-item">
-            <a href="/logout" class="nav-link">Coches</a>
+            <a href="/Servicio/" class="nav-link">Servicios</a>
         </li>
         <li class="nav-item">
-            <a href="/events" class="nav-link">Servicios</a>
+            <a href="/Reparacion/" class="nav-link">Reparaciones</a>
         </li>
         <li class="nav-item">
-            <a href="/users" class="nav-link">Reparaciones</a>
+            <a href="/Factura/" class="nav-link">Facturas</a>
         </li>
         <li class="nav-item">
             <a href="/logout" class="nav-link">Logout</a>

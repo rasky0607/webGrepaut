@@ -47,6 +47,8 @@ class ApiLib {
         }
     }
 
+//#### Tabla Clientes ####
+
     //Obtenemos los clientes de una empresa
     //Ejemplo de obtencion de datos por un get pasando parametros por el header
     public function ClientesDeEmpresaGet(){
@@ -66,20 +68,110 @@ class ApiLib {
         return $mijson;
     }
 
-    //Ejemplo de obtencion de datos por un get pasando parametros por el header
-    public function UsuariosDeUnaEmpresaGet($token,$idempresa){
+    public function DeleteClienteDeEmpresa($idcliente){
+
+    }
+
+//### ------- ###
+
+//#### Tabla Coches ####
+
+    public function CochesDeEmpresaGet(){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
         $client = \Config\Services::curlrequest();
 
-        $response = $client->request('GET', 'http:api.devsan.es/usuariosempresas/empresa/'.$idempresa, [
+        $response = $client->request('GET', 'http://api.devsan.es/coches/empresa/'.$idempresa, [
             'headers' => [
-                'token' => $token,
+                'token' => $token
             ]
         ]);
 
         $mijson = json_decode($response->getBody(),true);
-        print_r($mijson);
+        //print_r($mijson);
+        return $mijson;
     }
+//### ------- ###
 
+//#### Tabla Servicios ####
+
+    public function ServiciosDeEmpresaGet(){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/servicios/empresa/'.$idempresa, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+//### ------- ###
+
+
+//#### Tabla Reparaciones ####
+
+    public function ReparacionesDeEmpresaGet(){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/reparaciones/empresa/'.$idempresa, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+//### ------- ###
+
+
+//#### Tabla serviciosReparaciones ####
+
+    public function DetallesDeReparacionGet($idreparacion){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/serviciosreparaciones/detalles/'.$idreparacion, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+//### ------- ###
     
+
+
+//#### Tabla Facturas ####
+
+    public function FacturasDeEmpresaGet(){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/facturas/empresa/'.$idempresa, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+//### ------- ###
+
 } 
 

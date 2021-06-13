@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"> Welcome to <small>Grepaut</small></h1>
+            <h1 class="m-0 text-dark"> Bienvenidos a <small>Grepaut</small></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -42,13 +42,13 @@
 
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h5 class="card-title m-0">Coches</h5>
+                <h5 class="card-title m-0">Vehículos</h5>
               </div>
               <div class="card-body">
-                <h6 class="card-title">Listado de coches</h6>
+                <h6 class="card-title">Listado de vehículos</h6>
 
-                <p class="card-text">Aquí podrás ver y gestionar los coches que tiene registrados tu empresa.</p>
-                <a href="/users" class="btn btn-primary">Gestión de coches</a>
+                <p class="card-text">Aquí podrás ver y gestionar los vehículos que tiene registrados tu empresa.</p>
+                <a href="Coche/" class="btn btn-primary">Gestión de vehículos</a>
               </div>
             </div>
 
@@ -60,11 +60,11 @@
                 <h6 class="card-title">Listado de servicios</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar los servicios que tiene registrados tu empresa.</p>
-                <a href="/users" class="btn btn-primary">Gestión de servicios</a>
+                <a href="Servicio/" class="btn btn-primary">Gestión de servicios</a>
               </div>
             </div>
 
-            <!--Cuando haga click un elemento de este listado, llevara a los detalles de es rapración, es decir los servicios ofrecisos o la tabla ServiciosReparaciones-->
+            <!--Cuando haga click en el id de un elemnto de este listado, llevara a los detalles de es reparación, es decir los servicios ofrecisos o la tabla ServiciosReparaciones-->
              <div class="card card-primary card-outline">
               <div class="card-header">
                 <h5 class="card-title m-0">Reparaciones</h5>
@@ -73,7 +73,19 @@
                 <h6 class="card-title">Listado de reparaciones</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar las reparaciones que tiene registradas tu empresa.</p>
-                <a href="/users" class="btn btn-primary">Gestión de reparaciones</a>
+                <a href="Reparacion/" class="btn btn-primary">Gestión de reparaciones</a>
+              </div>
+            </div>
+
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title m-0">Facturas</h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">Listado de Facturas</h6>
+
+                <p class="card-text">Aquí podrás ver y gestionar las facturas que tiene generadas por empresa.</p>
+                <a href="Factura/" class="btn btn-primary">Gestión de facturas</a>
               </div>
             </div>
 

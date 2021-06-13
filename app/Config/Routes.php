@@ -30,6 +30,21 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 
+$routes->get('/deleteCliente/(:any)','Cliente::deleteCliente/$1');
+$routes->get('/editCliente/(:any)','Cliente::editCliente/$1');
+
+$routes->get('/deleteCoche/(:any)','Coche::deleteCoche/$1');
+$routes->get('/editCoche/(:any)','Coche::editCoche/$1');
+
+$routes->get('/deleteReparacion/(:any)','Reparacion::deleteReparacion/$1');
+$routes->get('/editReparacion/(:any)','Reparacion::editReparacion/$1');
+$routes->get('/detallesReparacion/(:any)','Reparacion::detallesReparacion/$1');
+
+$routes->get('/detallesFactura/(:any)/(:any)','Factura::detallesFactura/$1/$2');
+
+
+
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');

@@ -9,11 +9,11 @@
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Gestión de clientes</h1>
+          <h1 class="m-0 text-dark"> Gestión de vehículos</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo cliente</a>
+            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo vehículo</a>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -27,30 +27,32 @@
         <div class="col-lg-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h5 class="card-title m-0">Lista de clientes</h5>
+              <h5 class="card-title m-0">Lista de vehículos</h5>
             </div>
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody>
                   <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Teléfono</th>
+                    <th>Matricula</th>
+                    <th>id de cliente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
                     <th>&nbsp;Actions</th>
                   </tr>
                   <?php
-                  foreach ($clientes as $item) {
+                  foreach ($coches as $item) {
                   ?>
                     <tr>
                       <td><?= $item['id'] ?></td>
-                      <td><?= $item['nombre'] ?></td>
-                      <td><?= $item['apellido'] ?></td>
-                      <td><?= $item['tlf'] ?></td>
+                      <td><?= $item['matricula'] ?></td>
+                      <td><?= $item['idcliente'] ?></td>
+                      <td><?= $item['marca'] ?></td>
+                      <td><?= $item['modelo'] ?></td>
                       <td> 
-                        <a href=<?= site_url('/editCliente/'.$item['id']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href=<?= site_url('/editCoche/'.$item['id']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCliente/'.$item['id']) ?>" onclick="return confirmDelete()"><img src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteCoche/'.$item['id']) ?>" onclick="return confirmDelete()"><img src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>
@@ -80,7 +82,7 @@
         </div><!-- /.col -->
       <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo cliente</a>
+            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo vehículo</a>
           </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->

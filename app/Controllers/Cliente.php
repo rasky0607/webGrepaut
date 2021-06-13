@@ -24,11 +24,16 @@ class Cliente extends BaseController {
 	}
 
 
-	public function deleteCliente() {
-		$data = [];
-		
+	public function deleteCliente($idcliente) {
+		//echo "el id es ".$idcliente;
+		$apiClient = ApiLib::getInstance();
+		$apiClient->DeleteClienteDeEmpresa($idcliente);
 	}
 
+	public function editCliente($idcliente) {
+		$apiClient = ApiLib::getInstance();
+		
+	}
 
 	
 }
