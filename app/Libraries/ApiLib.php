@@ -26,11 +26,11 @@ class ApiLib {
         $client = \Config\Services::curlrequest();
 			//Peticion	
         $response = $client->request('POST', 'http://api.devsan.es/login', [
-           'form_params' => [
-             'email' => $email,
-             'password' => $password
-         ]
-     ]);
+         'form_params' => [
+           'email' => $email,
+           'password' => $password
+       ]
+   ]);
             //Json de respuesta
         $mijson = json_decode($response->getBody(),true);
         if($response->getStatusCode() == 200) {
@@ -48,9 +48,24 @@ class ApiLib {
     }
 
 //#### Tabla Clientes ####
+    public function ClienteDatosGet($idcliente){
+        $token = $_SESSION['token'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/clientes/datos/'.$idcliente, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+
+        return $mijson;
+    }
+
 
     //Obtenemos los clientes de una empresa
-    //Ejemplo de obtencion de datos por un get pasando parametros por el header
     public function ClientesDeEmpresaGet(){
 
         $token = $_SESSION['token'];
@@ -66,6 +81,69 @@ class ApiLib {
         $mijson = json_decode($response->getBody(),true);
         //print_r($mijson);
         return $mijson;
+    }
+
+    //PENDIENTE
+    public function CreateClienteDeEmpresaPost($nombre,$apellidos,$tlf,$email){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        //Peticion  
+        $response = $client->request('POST', 'http://api.devsan.es/clientes', [
+            'headers' => [
+                'token' => $token
+            ],
+
+            'form_params' => [
+               'nombre' => $nombre,
+               'empresa' => $idempresa,
+               'apellido' => $apellido,
+               'tlf' => $tlf,
+               'email' => $email
+           ]
+       ]);
+        //Json de respuesta
+        $mijson = json_decode($response->getBody(),true);
+        print_r($mijson);
+        if($response->getStatusCode() == 200) {
+            //Todo correcto
+            return true;
+        }else {
+            return false;
+        }
+        
+    }
+    //PENDIENTE
+    public function ActualizarCliente($idcliente,$nombre,$apellido,$tlf,$email){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        //Peticion  
+        $response = $client->request('PUT', 'http://api.devsan.es/clientes'.$idcliente, [
+            'headers' => [
+                'token' => $token
+            ],
+
+            'form_params' => [
+               'nombre' => $nombre,
+               'empresa' => $idempresa,
+               'apellido' => $apellido,
+               'tlf' => $tlf,
+               'email' => $email
+           ]
+       ]);
+        //Json de respuesta
+        $mijson = json_decode($response->getBody(),true);
+        print_r($mijson);
+
+        if($response->getStatusCode() == 200) {
+            //Todo correcto
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function DeleteClienteDeEmpresa($idcliente){
@@ -91,6 +169,42 @@ class ApiLib {
         //print_r($mijson);
         return $mijson;
     }
+
+    public function CochesDatosGet($idcoche){
+        $token = $_SESSION['token'];
+        $idempresa = $_SESSION['idempresa'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/coches/datos/'.$idcoche, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+
+    public function CochesDeClienteGet($idcliente){
+        $token = $_SESSION['token'];
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', 'http://api.devsan.es/coches/cliente/'.$idcliente, [
+            'headers' => [
+                'token' => $token
+            ]
+        ]);
+
+        $mijson = json_decode($response->getBody(),true);
+        //print_r($mijson);
+        return $mijson;
+    }
+
+    public function ActualizarCoche($idcliente,$matricula,$marca,$modelo){
+        
+    }
+
 //### ------- ###
 
 //#### Tabla Servicios ####

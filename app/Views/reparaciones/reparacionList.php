@@ -47,10 +47,12 @@
                       <td><?= $item['estadoReparacion'] ?></td>
                       <td><?= $item['idusuario'] ?></td>
                       <td><?= $item['idcoche'] ?></td>
-                      <td> 
-                        <a href=<?= site_url('/editReparacion/'.$item['id']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                      <td>  
+                        <a href=<?= site_url('/facturarReparacion/'.$item['id']) ?> ><img title="Generar factura de esta reparción" src="/assets/template/img/invoice.png" width="30" height="30"/></a>
+                         &nbsp;&nbsp;&nbsp;
+                        <a href=<?= site_url('/editReparacion/'.$item['id']) ?> ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteReparacion/'.$item['id']) ?>" onclick="return confirmDelete()"><img src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteReparacion/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>

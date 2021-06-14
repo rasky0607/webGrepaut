@@ -63,7 +63,7 @@
             <a href="/Cliente/" class="nav-link">Clientes</a>
         </li>
         <li class="nav-item">
-            <a href="/Coche/" class="nav-link">Coches</a>
+            <a href="/Coche/" class="nav-link">Vehículos</a>
         </li>
         <li class="nav-item">
             <a href="/Servicio/" class="nav-link">Servicios</a>

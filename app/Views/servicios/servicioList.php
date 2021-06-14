@@ -46,9 +46,9 @@
                       <td><?= $item['nombre'] ?></td>
                       <td><?= $item['precio'] ?>€</td>
                       <td> 
-                        <a href=<?= site_url('/editCoche/'.$item['id']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href=<?= site_url('/editServicio/'.$item['id']) ?> ><img title="Editar elemento"src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCoche/'.$item['id']) ?>" onclick="return confirmDelete()"><img src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteServicio/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>

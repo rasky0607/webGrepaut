@@ -45,7 +45,8 @@
                       <td><?= $item['fecha'] ?></td>
                       <td><?= $item['estado'] ?></td>
                       <td> 
-                        <a href=<?= site_url('/anularFactura/'.$item['numerofactura']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href="<?= site_url('/anularFactura/'.$item['numerofactura']) ?>" onclick="return confirmDelete()"> <img title="Anular factura y crear otra factura negativa" src="/assets/template/img/cancelar.png" width="30" height="30"/> 
+                        </a> 
                           &nbsp;&nbsp;&nbsp; 
                       </td> 
                     </tr>

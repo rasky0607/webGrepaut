@@ -9,12 +9,7 @@
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Gestión de clientes</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo cliente</a>
-          </ol>
+          <h1 class="m-0 text-dark"> Vehículos de el cliente <strong>[ <?= $idcliente?> ] <small><?= $nombreCliente ?> </small></strong></h1>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container -->
@@ -27,32 +22,25 @@
         <div class="col-lg-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h5 class="card-title m-0">Lista de clientes</h5>
+              <h5 class="card-title m-0">Lista de vehículos </h5>
             </div>
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody>
                   <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Teléfono</th>
-                    <th>&nbsp;Actions</th>
+                    <th>Matricula</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
                   </tr>
                   <?php
-                  foreach ($clientes as $item) {
+                  foreach ($coches as $item) {
                   ?>
                     <tr>
-                      <td><a href=" /detallesCochesEnPropiedad/<?=$item['id'] ?>/<?=$item['nombre'] ?>"><?= $item['id'] ?></td>
-                      <td><?= $item['nombre'] ?></td>
-                      <td><?= $item['apellido'] ?></td>
-                      <td><?= $item['tlf'] ?></td>
-                      <td> 
-                        <a href=<?= site_url('/editCliente/'.$item['id']) ?> ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
-                          &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCliente/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
-                        </a>
-                      </td> 
+                      <td><?= $item['id'] ?></td>
+                      <td><?= $item['matricula'] ?></td>
+                      <td><?= $item['marca'] ?></td>
+                      <td><?= $item['modelo'] ?></td>
                     </tr>
                   <?php
                   }
@@ -78,11 +66,7 @@
         <div class="col-sm-6">
 
         </div><!-- /.col -->
-      <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo cliente</a>
-          </ol>
-      </div><!-- /.col -->
+
     </div><!-- /.row -->
   </div>
 

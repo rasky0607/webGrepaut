@@ -13,7 +13,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo vehículo</a>
+            <a href="/Coche/createCoche" class="btn btn-success btn-sm">Nuevo vehículo</a>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -50,9 +50,9 @@
                       <td><?= $item['marca'] ?></td>
                       <td><?= $item['modelo'] ?></td>
                       <td> 
-                        <a href=<?= site_url('/editCoche/'.$item['id']) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href="<?= site_url('/editCoche/'.$item['id']) ?>/<?= $item['idcliente'] ?>" ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCoche/'.$item['id']) ?>" onclick="return confirmDelete()"><img src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteCoche/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>
@@ -82,7 +82,7 @@
         </div><!-- /.col -->
       <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo vehículo</a>
+            <a href="/Coche/createCoche" class="btn btn-success btn-sm">Nuevo vehículo</a>
           </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
