@@ -70,7 +70,7 @@ class ApiLib {
 		$result = curl_exec($curl);
 
 		if(!$result){
-			die("Connection Failure");
+			die("Conexion con la API Fallida");
 		}
 
 		curl_close($curl);

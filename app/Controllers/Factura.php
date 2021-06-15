@@ -9,31 +9,32 @@ use App\Libraries\ApiLib;
 class Factura extends BaseController {
 	public function index() {
 		$data = [];
-		$apiClient = ApiLib::getInstance();
-		$data['facturas'] = $apiClient->FacturasDeEmpresaGet();
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['facturas'] = json_decode($apiClient->run("GET", "/facturas/empresa/".$this->session->get('idempresa'), []));
 
 		return view('facturas/facturaList',$data);
 	}
 
 	public function detallesFactura($numerofactura,$idreparacion) {
-		
-		$apiClient = ApiLib::getInstance();
-		$extraccion = $apiClient->DetallesDeReparacionGet($idreparacion);//Es el mimso metodo para reparaciones que facturas
+
+		$data['idreparacion'] = $idreparacion;
 		$data['numerofactura'] = $numerofactura;
-		$data['datosReparacion'] = $extraccion['DatosReparacion'];
-		$data['serviciosReparacion'] = $extraccion['serviciosReparacion'];
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['extraccion'] = json_decode($apiClient->run("GET", "/serviciosreparaciones/detalles/".$idreparacion, []));
+		
+
+		$data['datosReparacion'] = $data['extraccion']->DatosReparacion;
+		$data['serviciosReparacion'] = $data['extraccion']->serviciosReparacion;
+		//print_r($data['datosReparacion']);
 		return view('facturas/detallesFactura',$data);
 		
 	}
 
-	public function crearFactura($idreparacion) {
-		$data = [];
-		
-	}
 
 	public function anularFactura($idreparacion) {
-		$apiClient = ApiLib::getInstance();
-		
+		$apiClient = new ApiLib($this->session->get('token'));
+		json_decode($apiClient->run("PUT", "/facturas/anularlareparacion/".$idreparacion, [],true));
+		return redirect()->to(site_url('/Factura'));	
 	}
 
 	

@@ -24,60 +24,89 @@
             <div class="card-header">
               <h5 class="card-title m-0">Lista de Facturas</h5>
             </div>
+            <?php
+            if (!empty($error)) {
+              ?>
+              <div class="d-flex justify-content-center form_container">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex mb-3 errormsg">
+                    <span><?= $error ?></span>
+                  </div>
+                </div>
+              </div>
+              <?php
+            }
+            ?>
+
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <th>Número de factura</th>
+                    <th>Nº de factura</th>
                     <th>ID de reparación</th>
                     <th>ID de técnico</th>
                     <th>Fecha</th>
                     <th>Estado de factura</th>
+                    <th>Nº de factura anulada</th>
                     <th>&nbsp;Actions</th>
                   </tr>
                   <?php
                   foreach ($facturas as $item) {
-                  ?>
+                    ?>
                     <tr>
-                      <td><a href=" /detallesFactura/<?=$item['numerofactura'] ?>/<?=$item['idreparacion'] ?>"><?= $item['numerofactura'] ?></td>
-                      <td><?= $item['idreparacion'] ?></td>
-                      <td><?= $item['idusuario'] ?></td>
-                      <td><?= $item['fecha'] ?></td>
-                      <td><?= $item['estado'] ?></td>
-                      <td> 
-                        <a href="<?= site_url('/anularFactura/'.$item['numerofactura']) ?>" onclick="return confirmDelete()"> <img title="Anular factura y crear otra factura negativa" src="/assets/template/img/cancelar.png" width="30" height="30"/> 
-                        </a> 
-                          &nbsp;&nbsp;&nbsp; 
-                      </td> 
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
+                      <td><a href=" /detallesFactura/<?=$item->numerofactura ?>/<?=$item->idreparacion ?>"><?= $item->numerofactura ?></td>
+                        <td><?= $item->idreparacion ?></td>
+                        <td><?= $item->idusuario ?></td>
+                        <td><?= $item->fecha ?></td>
+                        <td><?= $item->estado ?></td>
+                        <td><?= $item->numerofacturanulada ?></td>
+                        <td> 
+                          <?php
+                          if($item->estado == 'vigente') {
+                          ?>
+                          <a href="<?= '/anularFactura/'.$item->idreparacion ?>" onclick="return confirmAnulacion()"> <img title="Anular factura y crear otra factura negativa" src="/assets/template/img/cancelar.png" width="30" height="30"/> 
+                          </a> 
+                          &nbsp;&nbsp;&nbsp;
+
+                           <?php
+                            }
+                            else{
+                              ?>
+                               <a href="<?= '/anularFactura/'.$item->idreparacion ?>">
+                              </a> 
+                            <?php
+                            }
+                          ?>
+                        </td> 
+                      </tr>
+                      <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
+
           </div>
-
+          <!-- /.col-md-6 -->
         </div>
-        <!-- /.col-md-6 -->
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+
+    <!-- Content footer (Page footer User Management) -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+          </div><!-- /.col -->
+
+        </div><!-- /.row -->
       </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content -->
 
-
-  <!-- Content footer (Page footer User Management) -->
-  <div class="content-header">
-    <div class="container">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-
-        </div><!-- /.col -->
-
-    </div><!-- /.row -->
-  </div>
-
-</div><!-- /.content-wrapper -->
+    </div><!-- /.content-wrapper -->
 
     <?= $this->endSection() ?>

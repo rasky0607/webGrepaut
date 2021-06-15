@@ -12,7 +12,6 @@ class Reparacion extends BaseController {
 
 		$apiClient = new ApiLib($this->session->get('token'));
 		$data['reparaciones'] = json_decode($apiClient->run("GET", "/reparaciones/empresa/".$this->session->get('idempresa'), []));
-
 		return view('reparaciones/reparacionList',$data);
 	}
 
@@ -45,13 +44,40 @@ class Reparacion extends BaseController {
 	}
 
 	public function deleteReparacion($idreparacion) {
-		$apiClient = ApiLib::getInstance();
-		
+		$apiClient = new ApiLib($this->session->get('token'));
+		$result = $apiClient->run("DELETE", "/reparaciones/".$idreparacion, []);		
+		return redirect()->to(site_url('/Reparacion'));	
 	}
 
-	public function editReparacion($idreparacion) {
-		$apiClient = ApiLib::getInstance();
-		
+	public function editReparacion($idreparacion, $idusuario, $idcoche) {
+		$data = [];
+		$data['idreparacion'] = $idreparacion;
+		$data['idusuario'] = $idusuario;
+		$data['idcoche'] = $idcoche;
+
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['usuarios'] = json_decode($apiClient->run("GET", "/usuarios/empresa/".$this->session->get('idempresa'), []));
+		$data['coches'] = json_decode($apiClient->run("GET", "/coches/empresa/".$this->session->get('idempresa'), []));
+
+		if ($this->request->getMethod() == 'post') {
+			$data = [
+					'idcoche' => $this->request->getVar('idcoche'),
+					'idusuario' => $this->request->getVar('idusuario')
+				];
+
+				//peticion
+				$result = json_decode($apiClient->run("PUT", "/reparaciones/".$idreparacion, $data, true));
+				
+				if(!empty($result->Reparacion)){
+					return redirect()->to(site_url('/Reparacion'));
+				}
+				else {
+					$data['error'] = 'No se ha podido editar la reparación';
+					return view('reparaciones/newReparacion',$data);
+				}
+		}
+
+		return view('reparaciones/editReparacion',$data);
 	}
 
 	public function detallesReparacion($idreparacion){
@@ -64,6 +90,18 @@ class Reparacion extends BaseController {
 		$data['serviciosReparacion'] = $data['extraccion']->serviciosReparacion;
 		//print_r($data['datosReparacion']);
 		return view('reparaciones/serviciosReparacionList',$data);
+	}
+
+	public function facturarReparacion($idreparacion){
+		$apiClient = new ApiLib($this->session->get('token'));
+		$result = json_decode($apiClient->run("POST", "/facturas/".$idreparacion, []));
+		if(!empty($result->Error)){
+			return redirect()->to(site_url('/Reparacion'));
+		}
+		else {
+			return redirect()->to(site_url('/Factura'));
+		}
+		
 	}
 
 	//### Tabla ServicioReparaciones ###

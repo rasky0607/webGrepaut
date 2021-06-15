@@ -21,6 +21,17 @@
         function confirmDelete(){
             var reply=confirm("Este elemento va ser elimnado, ¿Estas seguro de continuar con el proceso?");
             if(reply){
+                //aler("Elemento eliminado");
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function confirmAnulacion(){
+            var reply=confirm("Esta factura va ser anulada y va generarse una negativa en su lugar. ¿Estas seguro de continuar con el proceso?");
+            if(reply){
+                //aler("Elemento eliminado");
                 return true;
             }else{
                 return false;

@@ -57,7 +57,7 @@
                                               foreach ($servicios as $item) {
                                                ?>
                                                <?php
-                                               echo "balbla ".$idservicio;
+                                               
                                                 if($idservicioEscogido == $item->id) {
                                                    ?> 
                                                      <option selected="true" value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->nombre ?> </option>

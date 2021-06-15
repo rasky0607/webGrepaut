@@ -45,7 +45,7 @@
                     <tr>
                       <td><?= $item->numerotrabajo ?></td>
                       <td><?= $item->nombre ?></td>
-                      <td><?= $item->precioServicio ?></td>
+                      <td><?= $item->precioServicio ?>€</td>
                       <td> 
                         <a href=<?= site_url('/editServicioReparacion/'.$datosReparacion->idreparacion.'/'.$item->numerotrabajo) ?> ><img src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 

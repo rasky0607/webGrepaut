@@ -22,7 +22,7 @@
         <div class="col-lg-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h5 class="card-title m-0">Servicios facturados para vehículo con matrícula <strong><?= $datosReparacion['matricula']?></strong></h5>
+              <h5 class="card-title m-0">Servicios facturados para vehículo con matrícula <strong><?= $datosReparacion->matricula?></strong></h5>
             </div>
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
@@ -36,9 +36,9 @@
                   foreach ($serviciosReparacion as $item) {
                   ?>
                     <tr>
-                      <td><?= $item['numerotrabajo'] ?></td>
-                      <td><?= $item['nombre'] ?></td>
-                      <td><?= $item['precioServicio'] ?>€</td>
+                      <td><?= $item->numerotrabajo ?></td>
+                      <td><?= $item->nombre ?></td>
+                      <td><?= $item->precioServicio ?>€</td>
                     </tr>
                   <?php
                   }
