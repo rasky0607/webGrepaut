@@ -66,7 +66,7 @@
                                               <?php
                                               foreach ($clientes as $item) {
                                                 ?>
-                                                <option value="<?= $item['id'] ?>"><?= $item['id'] ?>&nbsp; - &nbsp; <?= $item['nombre'] ?> </option>
+                                                <option value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->nombre ?> </option>
                                                 <?php
                                             }
                                             ?>

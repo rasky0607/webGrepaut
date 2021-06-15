@@ -13,7 +13,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo Servicio</a>
+            <a href="/Servicio/createServicio" class="btn btn-success btn-sm">Nuevo Servicio</a>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -42,13 +42,13 @@
                   foreach ($servicios as $item) {
                   ?>
                     <tr>
-                      <td><?= $item['id'] ?></td>
-                      <td><?= $item['nombre'] ?></td>
-                      <td><?= $item['precio'] ?>€</td>
+                      <td><?= $item->id ?></td>
+                      <td><?= $item->nombre ?></td>
+                      <td><?= $item->precio ?>€</td>
                       <td> 
-                        <a href=<?= site_url('/editServicio/'.$item['id']) ?> ><img title="Editar elemento"src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href=<?= site_url('/editServicio/'.$item->id) ?> ><img title="Editar elemento"src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteServicio/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteServicio/'.$item->id) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>
@@ -78,7 +78,7 @@
         </div><!-- /.col -->
       <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/cliente/createCliente" class="btn btn-success btn-sm">Nuevo Servicio</a>
+            <a href="/Servicio/createServicio" class="btn btn-success btn-sm">Nuevo Servicio</a>
           </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->

@@ -36,7 +36,7 @@
                 <h6 class="card-title">Listado de clientes</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar los clientes que tiene registrados tu empresa.</p>
-                <a href="cliente/" class="btn btn-primary">Gestión de clientes</a>
+                <a href="Cliente/" class="btn btn-primary">Gestión de clientes</a>
               </div>
             </div>
 

@@ -44,15 +44,15 @@
                   foreach ($coches as $item) {
                   ?>
                     <tr>
-                      <td><?= $item['id'] ?></td>
-                      <td><?= $item['matricula'] ?></td>
-                      <td><?= $item['idcliente'] ?></td>
-                      <td><?= $item['marca'] ?></td>
-                      <td><?= $item['modelo'] ?></td>
+                      <td><?= $item->id ?></td>
+                      <td><?= $item->matricula ?></td>
+                      <td><?= $item->idcliente ?></td>
+                      <td><?= $item->marca ?></td>
+                      <td><?= $item->modelo ?></td>
                       <td> 
-                        <a href="<?= site_url('/editCoche/'.$item['id']) ?>/<?= $item['idcliente'] ?>" ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href="<?= site_url('/editCoche/'.$item->id) ?>/<?= $item->idcliente ?>" ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCoche/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteCoche/'.$item->id) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>

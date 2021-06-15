@@ -30,6 +30,7 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 
+
 $routes->get('/detallesCochesEnPropiedad/(:any)/(:any)','Cliente::detallesCochesEnPropiedad/$1/$2');
 $routes->get('/deleteCliente/(:any)','Cliente::deleteCliente/$1');
 $routes->get('/editCliente/(:any)','Cliente::editCliente/$1');
@@ -37,6 +38,9 @@ $routes->get('/editCliente/(:any)','Cliente::editCliente/$1');
 
 $routes->get('/deleteCoche/(:any)','Coche::deleteCoche/$1');
 $routes->get('/editCoche/(:any)/(:any)','Coche::editCoche/$1/$2');
+
+$routes->get('/deleteServicio/(:any)','Servicio::deleteServicio/$1');
+$routes->get('/editServicio/(:any)','Servicio::editServicio/$1');
 
 $routes->get('/deleteReparacion/(:any)','Reparacion::deleteReparacion/$1');
 $routes->get('/editReparacion/(:any)','Reparacion::editReparacion/$1');

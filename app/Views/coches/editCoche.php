@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Editar <small>vehículo </small></h1>
+                    <h1 class="m-0 text-dark"> Editar <small>vehículo <?= $idcoche ?> </small></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -67,13 +67,13 @@
                                               foreach ($clientes as $item) {
                                                ?>
                                                <?php
-                                                if($idcliente == $item['id']) {
+                                                if($idcliente == $item->id) {
                                                    ?> 
-                                                     <option selected="true" value="<?= $item['id'] ?>"><?= $item['id'] ?>&nbsp; - &nbsp; <?= $item['nombre'] ?> </option>
+                                                     <option selected="true" value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->nombre ?> </option>
                                                   <?php   
                                                 }else {
                                                      ?> 
-                                                     <option value="<?= $item['id'] ?>"><?= $item['id'] ?>&nbsp; - &nbsp; <?= $item['nombre'] ?> </option>
+                                                     <option value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->nombre ?> </option>
                                                    
                                                    
                                                   <?php  

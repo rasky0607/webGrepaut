@@ -11,8 +11,7 @@ class Cliente extends BaseController {
 		$data = [];
 		
 		$apiClient = new ApiLib($this->session->get('token'));
-		//var_dump($this->session->get('token'));die();
-		$data['clientes'] = json_decode($apiClient->run("GET", "/clientes", []));
+		$data['clientes'] = json_decode($apiClient->run("GET", "/clientes/empresa/".$this->session->get('idempresa'), []));
 		
 		return view('clientes/clienteList', $data);
 	}
@@ -59,12 +58,13 @@ class Cliente extends BaseController {
 					return redirect()->to(site_url('/Cliente'));
 				} 
 				else if(empty($result->Cliente) && !empty($result->Error)) {
-					return view('clientes/newCliente',['error' => $result->Error]);
+					$data['error'] = $result->Error;
+					return view('clientes/newCliente',$data);
 				} 
 				else {
-
+					$data['error'] = 'No se ha podido crear el cliente';
 					//Mostramos la vista con el error
-					return view('clientes/newCliente',['error' => 'No se ha podido crear el cliente']);
+					return view('clientes/newCliente',$data);
 				}
 			}
 		}
@@ -84,17 +84,21 @@ class Cliente extends BaseController {
 
 		$data["error"] = "";
 		$data["idcliente"] = $idcliente;
-		$apiClient = ApiLib::getInstance();
-		$result = $apiClient->ClienteDatosGet($idcliente);
+
+
+		$apiClient = new ApiLib($this->session->get('token'));
+		$datosCliente = json_decode($apiClient->run("GET", "/clientes/datos/".$idcliente, []));
+		
 
 		//Prepara datos para pintar en la vista
-		foreach ($result as $item) {
+		foreach ($datosCliente as $item) {
 
-			$data["nombre"] = $item["nombre"];
-			$data["apellido"] = $item["apellido"];
-			$data["tlf"] = $item["tlf"];
-			$data["email"] = $item["email"];
+			$data["nombre"] = $item->nombre;
+			$data["apellido"] = $item->apellido;
+			$data["tlf"] = $item->tlf;
+			$data["email"] = $item->email;
 		}
+
 		
 		if ($this->request->getMethod() == 'post') {
 			if (empty($this->request->getVar('nombre')) || empty($this->request->getVar('apellido')) || empty($this->request->getVar('tlf'))) {
@@ -104,16 +108,24 @@ class Cliente extends BaseController {
 			}else {
 
 				//Guardar datos
-				$nombre = $this->request->getVar('nombre');
-				$apellido = $this->request->getVar('apellido');
-				$tlf = $this->request->getVar('tlf');
-				$email = $this->request->getVar('email');
-				if($apiClient->ActualizarCliente($idcliente,$nombre,$apellido,$tlf,$email)) {
+				$datosActualizados = [
+					'nombre' => $this->request->getVar('nombre'),
+					'empresa' => $this->session->get('idempresa'),
+					'apellido' => $this->request->getVar('apellido'),
+					'tlf' => $this->request->getVar('tlf'),
+					'email' => $this->request->getVar('email')
+				];
 
+				$result = json_decode($apiClient->run("PUT", "/clientes/".$idcliente, $datosActualizados,true));
+				
+				if(!empty($result->Cliente)) {
+					
 					//Todo correcto, lo devolvemos al listado
 					return redirect()->to(site_url('/Cliente'));
 
 				}else {
+							
+					$data["error"] = $result->Error;
 					
 					return view("clientes/editCliente",$data);
 				}
