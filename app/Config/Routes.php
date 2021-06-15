@@ -46,6 +46,10 @@ $routes->get('/deleteReparacion/(:any)','Reparacion::deleteReparacion/$1');
 $routes->get('/editReparacion/(:any)','Reparacion::editReparacion/$1');
 $routes->get('/detallesReparacion/(:any)','Reparacion::detallesReparacion/$1');
 
+$routes->get('/createServicioReparacion/(:any)','Reparacion::createServicioReparacion/$1');
+$routes->get('/editServicioReparacion/(:any)/(:any)','Reparacion::editServicioReparacion/$1/$2');
+$routes->get('/deleteServicioReparacion/(:any)/(:any)','Reparacion::deleteServicioReparacion/$1/$2');
+
 $routes->get('/detallesFactura/(:any)/(:any)','Factura::detallesFactura/$1/$2');
 
 

@@ -88,7 +88,6 @@ class Cliente extends BaseController {
 
 		$apiClient = new ApiLib($this->session->get('token'));
 		$datosCliente = json_decode($apiClient->run("GET", "/clientes/datos/".$idcliente, []));
-		
 
 		//Prepara datos para pintar en la vista
 		foreach ($datosCliente as $item) {

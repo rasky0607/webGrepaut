@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Nueva <small>reparación</small></h1>
+                    <h1 class="m-0 text-dark"> Nuevo <small>trabajo para la reparación <?= $idreparacion?></small></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
                     <div class="card card-primary card-outline">
 
                         <div class="card-body">
-                            <form method="post" action="/Reparacion/createReparacion">
+                            <form method="post" action="/Reparacion/createServicioReparacion/<?= $idreparacion?>">
 
                                 <?php
                                 if (!empty($error)) {
@@ -49,33 +49,23 @@
                                 <div class="d-flex justify-content-center form_container">
                                     <div class="col-12 col-md-3">
 
-                                        <label>ID Usuario</label>
+                                        <label>ID Servicio</label>
                                         <div class="input-group mb-3">
 
-                                            <select class="form-control select2bs4" name="idusuario">
+                                            <select class="form-control select2bs4" name="idservicio">
                                               <?php
-                                              foreach ($usuarios as $item) {
+                                              foreach ($servicios as $item) {
                                                 ?>
                                                 <option value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->nombre ?> </option>
                                                 <?php
                                             }
                                             ?>
-                                            </select>
-                                        </div>
-
-                                        <label>ID Coche</label>
-                                        <div class="input-group mb-3">
-
-                                            <select class="form-control select2bs4" name="idcoche">
-                                              <?php
-                                              foreach ($coches as $item) {
-                                                ?>
-                                                <option value="<?= $item->id ?>"><?= $item->id ?>&nbsp; - &nbsp; <?= $item->matricula ?> </option>
-                                                <?php
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
+                                        </select>
+                                    </div>
+                                    <label>Escribe el precio, solo si deseas modificar el precio base.</label>
+                                    <div class="input-group mb-3">
+                                        <input type="number" step="0.01" name="precioModificado" class="form-control input_user" value="" placeholder="0.00€">
+                                    </div>
 
                                 </div>
                             </div>
