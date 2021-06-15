@@ -43,14 +43,14 @@
                   foreach ($clientes as $item) {
                   ?>
                     <tr>
-                      <td><a href=" /detallesCochesEnPropiedad/<?=$item['id'] ?>/<?=$item['nombre'] ?>"><?= $item['id'] ?></td>
-                      <td><?= $item['nombre'] ?></td>
-                      <td><?= $item['apellido'] ?></td>
-                      <td><?= $item['tlf'] ?></td>
+                      <td><a href=" /detallesCochesEnPropiedad/<?=$item->id ?>/<?=$item->nombre ?>"><?= $item->id ?></td>
+                      <td><?= $item->nombre ?></td>
+                      <td><?= $item->apellido ?></td>
+                      <td><?= $item->tlf ?></td>
                       <td> 
-                        <a href=<?= site_url('/editCliente/'.$item['id']) ?> ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
+                        <a href=<?= site_url('/editCliente/'.$item->id) ?> ><img title="Editar elemento" src="/assets/template/img/pencil.png" width="30" height="30"/></a> 
                           &nbsp;&nbsp;&nbsp; 
-                        <a href="<?= site_url('deleteCliente/'.$item['id']) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
+                        <a href="<?= site_url('deleteCliente/'.$item->id) ?>" onclick="return confirmDelete()"><img title="Eliminar elemento" src="/assets/template/img/trash.png" width="30" height="30"/>  
                         </a>
                       </td> 
                     </tr>

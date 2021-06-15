@@ -13,20 +13,23 @@ class Login extends BaseController
 		$data = [];
 		$data["error"] = "";
 		return view("login", $data);
-
-		
 	}
 
 	public function InicioDeSession(){
 		$data = [];
 		if(isset($_POST['email']) && isset($_POST['password'])){
-			$apiClient = ApiLib::getInstance();
+			$apiClient = new ApiLib("");
+
+			$result = $apiClient->inicioDeSession($_POST['email'],$_POST['password']);
+			
 			//Correcto no hay errores				
-			if($apiClient->InicioDeSessionPost($_POST['email'],$_POST['password'])){
-				return redirect()->to(site_url('/Home/'));
-				//echo "Entraste!";
+			if(!empty($result->token)) {
 				
-				
+				$this->session->token = $result->token;
+				$this->session->idusuario = $result->id;
+				$this->session->idempresa = $result->idempresa;
+					
+				return redirect()->to(site_url('/Home/'));		
 			}
 			else{
 				$data['error'] = "Error de inicio de sesion";
@@ -37,8 +40,11 @@ class Login extends BaseController
 	}
 
 	public function logout() {
-		$apiClient = ApiLib::getInstance();
-		$apiClient->destroySession();
+
+		if(!empty($_SESSION['token'])) {
+			session_destroy();
+		}
+
 		return redirect()->to(site_url('/Login'));
 	}
 

@@ -37,10 +37,10 @@
                   foreach ($coches as $item) {
                   ?>
                     <tr>
-                      <td><?= $item['id'] ?></td>
-                      <td><?= $item['matricula'] ?></td>
-                      <td><?= $item['marca'] ?></td>
-                      <td><?= $item['modelo'] ?></td>
+                      <td><?= $item->id ?></td>
+                      <td><?= $item->matricula ?></td>
+                      <td><?= $item->marca ?></td>
+                      <td><?= $item->modelo ?></td>
                     </tr>
                   <?php
                   }
