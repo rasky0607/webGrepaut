@@ -8,10 +8,16 @@ use App\Libraries\ApiLib;
 
 class Coche extends BaseController {
 	public function index() {
-		$data = [];	
 		$apiClient = new ApiLib($this->session->get('token'));
 		$data['coches'] = json_decode($apiClient->run("GET", "/coches/empresa/".$this->session->get('idempresa'), []));
-		return view('coches/cocheList',$data);
+		
+		if(empty($data['coches']->Error)){
+			return view('coches/cocheList',$data);
+		}else{
+			$dataVacio['coches'] = [];
+			return view('coches/cocheList',$dataVacio);
+		}
+		
 	}
 
 	public function createCoche() {

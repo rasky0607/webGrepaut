@@ -79,7 +79,7 @@
         </div><!-- /.col -->
       <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="/reparaciones/newServicioReparaciones" class="btn btn-success btn-sm">Nuevo trabajo</a>
+            <a href="/Reparacion/createServicioReparacion/<?= $idreparacion ?>" class="btn btn-success btn-sm">Nuevo trabajo</a>
           </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->

@@ -11,8 +11,18 @@ class Reparacion extends BaseController {
 		$data = [];
 
 		$apiClient = new ApiLib($this->session->get('token'));
-		$data['reparaciones'] = json_decode($apiClient->run("GET", "/reparaciones/empresa/".$this->session->get('idempresa'), []));
-		return view('reparaciones/reparacionList',$data);
+		$data['reparaciones'] = json_decode($apiClient->run("GET", "/reparaciones/empresa/".$this->session->get('idusuario'), []));
+		//mydd($data['reparaciones']->Error);
+		//return view('reparaciones/reparacionList',$data);
+
+		if(empty($data['reparaciones']->Error)){
+			//mydd("holaa");
+			return view('reparaciones/reparacionList',$data);
+		}else{
+			//mydd("adioss");
+			$dataVacio['reparaciones'] = [];
+			return view('reparaciones/reparacionList',$dataVacio);
+		}
 	}
 
 	public function createReparacion() {

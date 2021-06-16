@@ -10,7 +10,7 @@ class Factura extends BaseController {
 	public function index() {
 		$data = [];
 		$apiClient = new ApiLib($this->session->get('token'));
-		$data['facturas'] = json_decode($apiClient->run("GET", "/facturas/empresa/".$this->session->get('idempresa'), []));
+		$data['facturas'] = json_decode($apiClient->run("GET", "/facturas/empresa/".$this->session->get('idusuario'), []));
 
 		return view('facturas/facturaList',$data);
 	}
