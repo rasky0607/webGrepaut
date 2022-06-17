@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://grepaut.loc';
+	public $baseURL = 'http://devsan.es';
 
 	/**
 	 * --------------------------------------------------------------------------

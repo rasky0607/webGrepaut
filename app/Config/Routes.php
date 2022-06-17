@@ -54,6 +54,8 @@ $routes->get('/deleteServicioReparacion/(:any)/(:any)','Reparacion::deleteServic
 $routes->get('/anularFactura/(:any)','Factura::anularFactura/$1');
 $routes->get('/detallesFactura/(:any)/(:any)','Factura::detallesFactura/$1/$2');
 
+$routes->get('/deshabilitarUser/(:any)','Usuario::deshabilitarUser/$1');
+$routes->get('/habilitarUser/(:any)','Usuario::habilitarUser/$1');
 
 
 

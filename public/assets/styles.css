@@ -5,3 +5,39 @@
     border-radius: 5px;
     text-align: center;
 }
+
+
+html, body {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+.wrapper {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+.search{
+    margin-right: 5px;
+}
+
+.inputsearch{
+    margin-left: 5px;
+}
+
+.inputsfiltro{
+    display: flex;
+}
+
+.myactions{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.newItem {
+    margin-top: 10px;
+    height: 50%;
+}

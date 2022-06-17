@@ -23,7 +23,8 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-center form_container">
-                        <form method="post" action="Login/InicioDeSession">
+                        <!--<form method="post" action="Login/InicioDeSession">-->
+                        <form method="post" action="/">
 
                            <!--Contenido-->
                             <div class="container">

@@ -2,7 +2,7 @@
 <?= $this->extend('layouts/main')?>
 
 
-<?= $this->section('content')?>
+<?= $this->section('content',$data)?>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -36,7 +36,7 @@
                 <h6 class="card-title">Listado de clientes</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar los clientes que tiene registrados tu empresa.</p>
-                <a href="Cliente/" class="btn btn-primary">Gestión de clientes</a>
+                <a href="/Cliente/" class="btn btn-primary">Gestión de clientes</a>
               </div>
             </div>
 
@@ -48,7 +48,7 @@
                 <h6 class="card-title">Listado de vehículos</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar los vehículos que tiene registrados tu empresa.</p>
-                <a href="Coche/" class="btn btn-primary">Gestión de vehículos</a>
+                <a href="/Coche/" class="btn btn-primary">Gestión de vehículos</a>
               </div>
             </div>
 
@@ -60,7 +60,7 @@
                 <h6 class="card-title">Listado de servicios</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar los servicios que tiene registrados tu empresa.</p>
-                <a href="Servicio/" class="btn btn-primary">Gestión de servicios</a>
+                <a href="/Servicio/" class="btn btn-primary">Gestión de servicios</a>
               </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <h6 class="card-title">Listado de reparaciones</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar las reparaciones que tiene registradas tu empresa.</p>
-                <a href="Reparacion/" class="btn btn-primary">Gestión de reparaciones</a>
+                <a href="/Reparacion/" class="btn btn-primary">Gestión de reparaciones</a>
               </div>
             </div>
 
@@ -85,10 +85,30 @@
                 <h6 class="card-title">Listado de Facturas</h6>
 
                 <p class="card-text">Aquí podrás ver y gestionar las facturas que tiene generadas por empresa.</p>
-                <a href="Factura/" class="btn btn-primary">Gestión de facturas</a>
+                <a href="/Factura/" class="btn btn-primary">Gestión de facturas</a>
               </div>
             </div>
 
+            <?php
+            //Determina si el usuario es admin o no, para mostrar el acceso a la gestion de usuarios
+                if($_SESSION['tipo'] == "admin"){
+                    echo "
+                    <div class=\"card card-primary card-outline\">
+                      <div class=\"card-header\">
+                        <h5 class=\"card-title m-0\">Gestion de usuarios</h5>
+                      </div>
+                      <div class=\"card-body\">
+                        <h6 class=\"card-title\">Alta, baja y modificación de usuarios</h6>
+
+                        <p class=\"card-text\">Aquí puedes dar de alta o deshabilitar/habilitar usuarios de tu empresa en Grepaut.</p>
+                        <a href=\"/Usuario/\" class=\"btn btn-primary\">Gestionar</a>
+                      </div>
+                    </div>
+                    ";
+                }
+
+
+            ?>
 
             <div class="card card-primary card-outline">
               <div class="card-header">

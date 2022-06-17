@@ -8,10 +8,18 @@ use App\Libraries\ApiLib;
 
 class Cliente extends BaseController {
 	public function index() {
+		//Si pasa o no pasa parametros por el buscador o filtro	
+		if ($this->request->getMethod() == 'post') {	
+			if(!empty($this->request->getVar('cadena'))){
+				$dataFilter = $this->filtroCliente();
+				return view('clientes/clienteList',$dataFilter);
+			}
+		}
+
 		$data = [];
-		
 		$apiClient = new ApiLib($this->session->get('token'));
 		$data['clientes'] = json_decode($apiClient->run("GET", "/clientes/empresa/".$this->session->get('idempresa'), []));
+
 		
 		return view('clientes/clienteList', $data);
 	}
@@ -135,7 +143,51 @@ class Cliente extends BaseController {
 		
 	}
 
+	public function filtroCliente(){	
+		//Si la cadena es vacia
+		if(empty($this->request->getVar('cadena'))){
+			return redirect()->to(site_url('/Cliente'));			
+		}
+		//Separamos el nombre y apellidos y le añadimos a los apellidos una " _ " para que lo entienda la url como Gonzalez_Ramirez
+		$nombreYApellidos = $this->separadorNombreYApellido($this->request->getVar('cadena'));
 
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['clientes'] = json_decode($apiClient->run("GET", "/clientes/buscar/".$this->session->get('idempresa')."/".$nombreYApellidos['nombre']."/".$nombreYApellidos['apellidos'], []));				
+		/*$result = json_decode($apiClient->run("GET", "/empresas/".$this->session->get('idempresa'), []));     
+		$data ['empresa'] = [
+			'nombreEmpresa' => $result->Empresa[0]->nombre
+		];*/
+		//var_dump($data['clientes']->message);
+		if(empty($data['clientes']->message)){
+			//return view('usuarios/gestionUsuariosView',$data);
+			return $data;
+		}else{
+			$dataVacio['clientes'] = [];
+			return $dataVacio;
+			//return view('usuarios/gestionUsuariosView',$dataVacio);
+		}
+	}
+
+	function separadorNombreYApellido($cadena){
+
+		$result = explode(" ", $cadena);
+		$nombre = "";
+		$apellidos = "";
+		//echo count($result);
+		for($i=0; $i < count($result); $i++){
+			if($i==0){
+				$nombre = $result[$i];
+			}else if($i< count($result)-1 && $i != 0){				
+				$apellidos .= $result[$i].'_'; 
+			}else{
+				$apellidos .= $result[$i];
+			}
+			
+		}
+		$data ['nombre'] = $nombre;
+		$data ['apellidos'] = $apellidos;
+		return $data;
+	}
 
 	
 

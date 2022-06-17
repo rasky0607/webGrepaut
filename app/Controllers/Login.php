@@ -6,38 +6,42 @@ use CodeIgniter\HTTP\IncomingRequest;
 use App\Libraries\ApiLib;
 use App\Libraries\ClientLib;
 
+
+
 class Login extends BaseController
 {
+    
+    public function index() {
+        $data = [];
+        $data["error"] = "";
+        
+        if(isset($_POST['email']) && isset($_POST['password'])){
+            //mydd("adioss");
+            $apiClient = new ApiLib("");
 
-	public function index() {
-		$data = [];
-		$data["error"] = "";
-		return view("login", $data);
-	}
-
-	public function InicioDeSession(){
-		$data = [];
-		if(isset($_POST['email']) && isset($_POST['password'])){
-			$apiClient = new ApiLib("");
-
-			$result = $apiClient->inicioDeSession($_POST['email'],$_POST['password']);
-			
-			//Correcto no hay errores				
-			if(!empty($result->token)) {
-				
-				$this->session->token = $result->token;
-				$this->session->idusuario = $result->id;
-				$this->session->idempresa = $result->idempresa;
-					
-				return redirect()->to(site_url('/Home/'));		
-			}
-			else{
-				$data['error'] = "Error de inicio de sesion";
-				return view('login',$data);
-			}
-		}
-
-	}
+            $result = $apiClient->inicioDeSession($_POST['email'],$_POST['password']);
+            
+            if(!empty($result->token)) {
+                
+                $this->session->token = $result->token;
+                $this->session->idusuario = $result->id;
+                $this->session->idempresa = $result->idempresa;
+                $this->session->tipo = $result->tipo;
+                $this->session->nombre = $result->nombre;
+                $this->session->pathUserLogo = $result->pathUserLogo;
+                $this->session->email = $_POST['email'];
+                return redirect()->to(site_url('/Home/'));
+               
+            }
+            else{
+                $data['error'] = "Error de inicio de sesion";
+                return view('login',$data);
+            }
+        }
+        
+        return view("login", $data);
+    }
+    
 
 	public function logout() {
 
@@ -53,6 +57,7 @@ class Login extends BaseController
 		$apiClient = new ApiLib();
 		$apiClient->ClientesDeEmpresaGet($_SESSION['token'],$_SESSION['idempresa']);
 	}
+    
 
 
 	/* MI testeo de primera peticion a la api

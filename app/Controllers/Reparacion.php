@@ -10,6 +10,14 @@ class Reparacion extends BaseController {
 	public function index() {
 		$data = [];
 
+		//Si pasa o no pasa parametros por el buscador o filtro
+		if ($this->request->getMethod() == 'post') {
+			if(!empty($this->request->getVar('cadena'))){
+				$dataFilter = $this->filtroReparaciones();
+				return view('reparaciones/reparacionList',$dataFilter);
+			}
+		}
+
 		$apiClient = new ApiLib($this->session->get('token'));
 		$data['reparaciones'] = json_decode($apiClient->run("GET", "/reparaciones/empresa/".$this->session->get('idusuario'), []));
 		//mydd($data['reparaciones']->Error);
@@ -231,6 +239,26 @@ class Reparacion extends BaseController {
 	}
 
 	//### FIN Tabla ServicioReparaciones ###
+
+	//BUsca reparaciones de una empresa en base a una matricula
+	public function filtroReparaciones(){	
+		//Si la cadena es vacia
+		if(empty($this->request->getVar('cadena'))){
+			return redirect()->to(site_url('/Reparacion'));			
+		}
+
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['reparaciones'] = json_decode($apiClient->run("GET", "/reparaciones/empresa/buscar/".$this->session->get('idempresa')."/".$this->request->getVar('cadena'),[]));				   
+		
+		if(empty($data['reparaciones']->Error)){
+			//return view('usuarios/gestionUsuariosView',$data);
+			return $data;
+		}else{
+			$dataVacio['reparaciones'] = [];
+			return $dataVacio;
+			//return view('usuarios/gestionUsuariosView',$dataVacio);
+		}
+	}
 
 
 	

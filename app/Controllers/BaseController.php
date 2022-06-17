@@ -36,7 +36,8 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['my_functions'];
+    
+	//protected $helpers = ['my_functions'];
 
 	/**
 	 * Constructor.
@@ -49,6 +50,7 @@ class BaseController extends Controller
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
+        helper('my_functions');
 
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.

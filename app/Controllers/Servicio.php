@@ -9,6 +9,15 @@ use App\Libraries\ApiLib;
 class Servicio extends BaseController {
 	public function index() {
 		$data = [];
+
+		//Si pasa o no pasa parametros por el buscador o filtro
+		if ($this->request->getMethod() == 'post') {
+			if(!empty($this->request->getVar('cadena'))){
+				$dataFilter = $this->filtroServicio();
+				return view('servicios/servicioList',$dataFilter);
+			}
+		}
+
 		$apiClient = new ApiLib($this->session->get('token'));
 		$data['servicios'] = json_decode($apiClient->run("GET", "/servicios/empresa/".$this->session->get('idempresa'), []));
 
@@ -127,5 +136,24 @@ class Servicio extends BaseController {
 		return view('servicios/editServicio',$data);
 	}
 
+	public function filtroServicio(){	
+		//Si la cadena es vacia
+		if(empty($this->request->getVar('cadena'))){
+			return redirect()->to(site_url('/Servicio'));			
+		}
+
+
+		$apiClient = new ApiLib($this->session->get('token'));
+		$data['servicios'] = json_decode($apiClient->run("GET", "/servicios/buscar/".$this->session->get('idempresa')."/".$this->request->getVar('cadena'), []));				     
+		
+		if(empty($data['servicios']->Error)){
+			//return view('usuarios/gestionUsuariosView',$data);
+			return $data;
+		}else{
+			$dataVacio['servicios'] = [];
+			return $dataVacio;
+			//return view('usuarios/gestionUsuariosView',$dataVacio);
+		}
+	}
 	
 }

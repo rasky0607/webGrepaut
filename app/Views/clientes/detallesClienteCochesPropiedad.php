@@ -11,6 +11,16 @@
         <div class="col-sm-6">
           <h1 class="m-0 text-dark"> Vehículos de el cliente <strong>[ <?= $idcliente?> ] <small><?= $nombreCliente ?> </small></strong></h1>
         </div><!-- /.col -->
+        <div class="col-sm-12">
+                    <!--<ol class="breadcrumb float-sm-right myactions">
+                      <div class="inputsfiltro">
+                        <input class="form-control input_user inputsearch" placeholder="Matricula" type="search" />
+                        <button class="btn btn-success btn-sm search" type="submit"><img title="Buscar por matricula" src="/assets/template/img/lupa.png" width="30" height="30"/></button>
+                      </div>
+
+                        
+                    </ol>-->
+        </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container -->
   </div><!-- /.content-header -->
@@ -27,7 +37,7 @@
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody>
-                  <tr>
+                  <tr class="thead-dark">
                     <th>ID</th>
                     <th>Matricula</th>
                     <th>Marca</th>
